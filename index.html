@@ -1,3 +1,21 @@
+<!-- Este projeto é um site de portfólio pessoal, desenvolvido para apresentar habilidades, projetos e formas de contato de maneira organizada, moderna e responsiva.
+
+O sistema é dividido em seções principais, como apresentação (hero), projetos e contato, permitindo que recrutadores naveguem facilmente pelas informações.
+
+A interface utiliza HTML, CSS e JavaScript, com foco em design responsivo, navegação fluida e experiência do usuário, incluindo menu adaptável para dispositivos móveis e efeitos visuais interativos.
+
+Os projetos são exibidos em formato de cards organizados em grid, separados entre projetos de interface e projetos com JavaScript, destacando tanto habilidades visuais quanto lógicas.
+
+O sistema também conta com:
+
+menu mobile interativo
+rolagem suave entre seções
+links diretos para projetos hospedados
+integração com GitHub, WhatsApp e email
+botão para download de currículo
+
+O principal objetivo do projeto é funcionar como vitrine profissional, demonstrando capacidade de desenvolver interfaces completas, responsivas e funcionais. -->
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -78,26 +96,26 @@ nav a:hover::after{
 }
 
 /* MENU MOBILE */
-.menu-toggle{
+.menuBtn{
     display:none;
     font-size:30px;
     color:white;
     cursor:pointer;
 }
 
-.overlay{
+.telaEscura{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.4);
+    background:rgba(0, 0, 0, 0.371);
     opacity:0;
     pointer-events:none;
     transition:0.3s;
 }
 
-.overlay.active{
+.telaEscura.ativa{
     opacity:1;
     pointer-events:all;
 }
@@ -112,6 +130,7 @@ nav a:hover::after{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .hero img{
@@ -167,6 +186,12 @@ nav a:hover::after{
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    /* grid-template-columns: se refere as colunas do grid.
+
+       repeat: repete o que está estre parênteses pra todas as colunas.
+    
+       auto-fit: cria colunas na tela conforme o espaço disponível. Se preciso, ultrapassa a largura mínima pra preencher o quanto da tela puder, sedo que cada coluna vai ocupar 1 frame do que é possível.
+       */
     gap:20px;
 }
 
@@ -237,7 +262,7 @@ footer{
         transition:0.4s ease;
     }
 
-    nav.active{
+    nav.ativa{
         right:0;
     }
 
@@ -246,7 +271,7 @@ footer{
         gap:30px;
     }
 
-    .menu-toggle{
+    .menuBtn{
         display:block;
     }
 
@@ -262,14 +287,14 @@ footer{
 
 <body>
 
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="telaEscura" id="telaEscura" onclick="toggleMenu()"></div>
 
 <header>
     <div class="logo">Ryan d. Santos</div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menuBtn" onclick="toggleMenu()">☰</div>
 
-    <nav id="nav">
+    <nav id="menuMobile">
         <ul>
             <li><a href="#">Sobre</a></li>
             <li><a href="#projetos">Projetos</a></li>
@@ -282,7 +307,7 @@ footer{
     <img src="IMGs/output (1).jpg" alt="Foto de Ryan">
     <h1>Ryan - Desenvolvedor Front-End</h1>
     <p>Desenvolvo interfaces modernas, responsivas e interativas com HTML, CSS e JavaScript.</p>
-    <a href="PDFs/Currículo_RYAN (2.0).pdf" target="_blank" class="btn">Baixar currículo</a>
+    <a href="PDFs/Currículo_RYAN (2.0).pdf" target="blank" class="btn">Baixar currículo</a>
 </section>
 
 <section class="section" id="projetos">
@@ -353,11 +378,21 @@ footer{
 
 <script>
 function toggleMenu(){
-    document.getElementById("nav").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
+    //mostra o menu
+    document.getElementById("menuMobile").classList.toggle("ativa");
+    //escurece a tela
+    document.getElementById("telaEscura").classList.toggle("ativa");
 }
 
-if (performance.navigation.type === 1) 
+if (performance.navigation.type === 1)
+
+/* O type indica como o usuário chegou na página.
+
+Valores principais:
+
+0 → entrou normalmente (clicou num link, digitou URL)
+1 → recarregou a página (F5 ou botão atualizar)
+2 → voltou ou avançou no histórico */
     
        {window.location.href = "https://ryan-programador-321.github.io/Meu-portfolio/";}
     //pra recarregar certinho
